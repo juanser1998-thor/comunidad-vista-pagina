@@ -521,9 +521,6 @@ button { font: inherit; }
 .organizer-logo-wrap {
   display: inline-flex;
   max-width: 100%;
-  padding: 11px 15px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .97);
 }
 
 .organizer-logo-wrap img { display: block; width: min(100%, 380px); height: auto; }
@@ -678,6 +675,7 @@ button { font: inherit; }
 .program-card-featured p { color: #b9d2c7; }
 .program-card-photo { padding: 0; border-color: rgba(13, 104, 72, .25); color: var(--text); }
 .program-card-photo > img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.program-card:nth-child(3) > img { object-position: 50% 42%; }
 .program-card-photo .program-card-overlay { background: linear-gradient(to top, rgba(1, 14, 9, .95), rgba(1, 14, 9, .12) 82%); }
 .program-card-mini-content { position: relative; display: flex; height: 100%; flex-direction: column; justify-content: flex-end; padding: 28px; }
 .program-card-photo p { color: #c1d8ce; }
@@ -785,8 +783,10 @@ button { font: inherit; }
 .gallery-item img { height: 100%; object-fit: cover; transition: transform .45s ease, filter .45s ease; }
 .gallery-item > span { position: absolute; z-index: 2; right: 19px; bottom: 17px; left: 19px; display: grid; font-family: var(--display); font-size: .94rem; font-weight: 700; line-height: 1.2; text-transform: uppercase; }
 .gallery-item small { margin-bottom: 5px; color: var(--mint); font-family: var(--body); font-size: .6rem; letter-spacing: .16em; }
+.gallery-item-speaker > span { font-size: clamp(.72rem, .82vw, .86rem); line-height: 1.28; }
 .gallery-item-wide { grid-column: span 2; }
 .gallery-item-tall { grid-row: span 2; }
+.gallery-item-portrait img { object-position: center 28%; }
 .gallery-item.is-hidden { display: none; }
 
 .archive { background: var(--surface); color: var(--surface-text); }
@@ -794,7 +794,7 @@ button { font: inherit; }
 .archive-card {
   position: relative;
   display: grid;
-  grid-template-columns: .58fr 1.42fr auto;
+  grid-template-columns: .75fr 1.35fr auto;
   align-items: end;
   gap: 60px;
   min-height: 410px;
@@ -816,7 +816,7 @@ button { font: inherit; }
 }
 
 .archive-card > * { position: relative; }
-.archive-year { align-self: center; color: transparent; font-family: var(--display); font-size: clamp(9rem, 15vw, 14rem); font-weight: 800; letter-spacing: -.1em; line-height: .7; -webkit-text-stroke: 1px rgba(75, 231, 172, .42); }
+.archive-year { align-self: center; color: transparent; font-family: var(--display); font-size: clamp(5.8rem, 9vw, 9rem); font-weight: 800; letter-spacing: -.08em; line-height: .7; -webkit-text-stroke: 1px rgba(75, 231, 172, .42); }
 .archive-copy p:last-child { max-width: 610px; margin: 25px 0 0; color: var(--soft); }
 .archive h2 { font-size: clamp(2.8rem, 4vw, 4.8rem); }
 .archive .secondary-action { align-self: end; margin: 0; white-space: nowrap; }
@@ -875,7 +875,7 @@ button { font: inherit; }
   .story-layout { gap: 50px; }
   .program-grid { grid-template-columns: 1.2fr 1fr; }
   .program-card:nth-child(4) { grid-column: 2; }
-  .archive-card { grid-template-columns: .48fr 1.52fr; }
+  .archive-card { grid-template-columns: .7fr 1.3fr; }
   .archive .secondary-action { grid-column: 2; justify-self: start; }
 }
 
@@ -943,7 +943,6 @@ button { font: inherit; }
   .organizers-copy h2 { font-size: clamp(2.9rem, 14vw, 4.4rem); }
   .organizer-brand-card { margin-top: 34px; padding: 26px 24px 28px; }
   .organizer-brand-card::before { top: 30px; bottom: 30px; }
-  .organizer-logo-wrap { padding: 9px 11px; }
   .organizer-brand-card p { font-size: 1rem; line-height: 1.65; }
   .organizers-visual { min-height: 430px; }
   .organizers-visual img { bottom: -70px; height: 490px; }
@@ -963,7 +962,7 @@ button { font: inherit; }
   .gallery-grid { grid-auto-rows: 185px; grid-template-columns: 1fr 1fr; }
   .gallery-item-wide { grid-column: span 2; }
   .archive-card { grid-template-columns: 1fr; gap: 34px; min-height: 0; padding: 38px 28px; }
-  .archive-year { font-size: 8rem; }
+  .archive-year { font-size: 5.8rem; }
   .archive .secondary-action { grid-column: auto; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > div:first-child { grid-column: auto; }
