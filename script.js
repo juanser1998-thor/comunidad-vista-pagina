@@ -38,6 +38,55 @@
 
   document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
+  const testimonyTabs = [...document.querySelectorAll('[data-testimony-target]')];
+  const testimonyPanels = [...document.querySelectorAll('[data-testimony-panel]')];
+  const testimonyNote = document.querySelector('[data-testimony-note]');
+  const testimonyNotes = [
+    'Testimonio 01 · La experiencia contada por quienes hicieron parte del encuentro.',
+    'Testimonio 02 · Aprendizajes y conexiones que permanecen después del congreso.',
+    'Testimonio 03 · Una mirada personal a lo vivido junto a la comunidad.'
+  ];
+
+  const activateTestimony = (tab, shouldFocus = false) => {
+    const targetId = tab.dataset.testimonyTarget;
+    const activeIndex = testimonyTabs.indexOf(tab);
+
+    testimonyTabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-selected', String(isActive));
+      item.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+
+    testimonyPanels.forEach((panel) => {
+      const isActive = panel.id === targetId;
+      const video = panel.querySelector('video');
+      if (!isActive) video?.pause();
+      panel.hidden = !isActive;
+      panel.classList.toggle('is-active', isActive);
+
+      if (isActive && video && !video.dataset.prepared) {
+        video.preload = 'metadata';
+        video.load();
+        video.dataset.prepared = 'true';
+      }
+    });
+
+    if (testimonyNote) testimonyNote.textContent = testimonyNotes[activeIndex] || '';
+    if (shouldFocus) tab.focus();
+  };
+
+  testimonyTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTestimony(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const offset = event.key === 'ArrowRight' ? 1 : -1;
+      const nextTab = testimonyTabs[(index + offset + testimonyTabs.length) % testimonyTabs.length];
+      activateTestimony(nextTab, true);
+    });
+  });
+
   const showLightboxItem = (index) => {
     if (!visibleItems.length || !lightboxImage || !lightboxCaption) return;
     currentIndex = (index + visibleItems.length) % visibleItems.length;
