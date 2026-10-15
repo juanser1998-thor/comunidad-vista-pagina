@@ -1091,7 +1091,7 @@ button { font: inherit; }
 
 .featured-speaker-photo-main { grid-row: 1 / 3; }
 .featured-speaker-photo img { height: 100%; object-fit: cover; transition: transform .45s ease, filter .45s ease; }
-.featured-speaker-photo-main img { object-position: right center; }
+.featured-speaker-photo-main img { object-position: center; }
 .featured-speaker-photo:hover img { transform: scale(1.035); filter: saturate(1.08); }
 
 .featured-speaker-photo figcaption {
